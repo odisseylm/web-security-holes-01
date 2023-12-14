@@ -1,6 +1,7 @@
 package com.mvv.security.xxe
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatCode
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayInputStream
 import kotlin.text.Charsets.UTF_8
@@ -32,6 +33,28 @@ class XxeTest {
 
         assertThat(document.toXmlString()).contains("127.0.0.1")
         assertThat(document.getElementByTagName("root")?.textContent).contains("127.0.0.1")
+    }
+
+    @Test
+    fun testXxe2_byXmlService() {
+
+        val file = "/etc/hosts"
+        val xml = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file://$file"> ]>
+                <root>
+                  <child1>
+                    <sub-child1>&xxe;</sub-child1>
+                  </child1>
+                </root>
+                """.trimIndent()
+
+        println("Infected input XML file: \n$xml\n")
+
+        assertThatCode {
+                XmlService(unsafeDocumentBuilder()).serviceWhichReturnsFullContentInErrorWithPossibleXxeLocalFile(xml)
+            }
+            .hasMessageContaining("127.0.0.1")
     }
 
 

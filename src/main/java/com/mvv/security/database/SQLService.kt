@@ -2,8 +2,10 @@ package com.mvv.security.database
 
 import java.math.BigDecimal
 import java.sql.ResultSet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+//import javax.servlet.http.HttpServletRequest
+//import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 
 
 //data class User (

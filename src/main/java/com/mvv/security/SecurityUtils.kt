@@ -1,6 +1,7 @@
 package com.mvv.security
 
-import javax.servlet.ServletRequest
+//import javax.servlet.ServletRequest
+import jakarta.servlet.ServletRequest
 
 
 fun validateClientIsLocal(request: ServletRequest) {

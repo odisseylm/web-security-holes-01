@@ -117,6 +117,12 @@ class CreateDatabaseTest {
         }
     } }
 
+    @Test
+    @Order(99)
+    fun usageOfDatabaseInitServletContextListener() {
+        try { DatabaseInitServletContextListener() } catch (_: Exception) { }
+    }
+
 
     private fun makeSureDatabaseIsCreatedAndFilled() {
         val tableAccountExists = openAdminConnection().use { con ->

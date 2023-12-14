@@ -4,8 +4,10 @@ import com.mvv.security.validateClientIsLocal
 import org.apache.commons.text.StringEscapeUtils.escapeXml10
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+//import javax.servlet.http.HttpServletRequest
+//import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import javax.xml.parsers.DocumentBuilder
 
 
@@ -46,7 +48,7 @@ class XmlService (private val documentBuilder: DocumentBuilder) {
      * </transfer>
      *
      */
-    private fun serviceWhichReturnsFullContentInErrorWithPossibleXxeLocalFile(inputXmlString: String): String {
+    internal fun serviceWhichReturnsFullContentInErrorWithPossibleXxeLocalFile(inputXmlString: String): String {
         println("serviceWhichReturnsFullContentInErrorWithPossibleXxeLocalFile: inputXmlString = $inputXmlString")
 
         val xml = documentBuilder.toXml(inputXmlString)

@@ -14,7 +14,7 @@ Reflected XSS attack
 It is named 'reflected' because injection is done on <b>server</b> side and applied on client side (like, code injection reflected via server).
 <br/>
 
-Usage: <a href="http://localhost:8080/web-security-holes-01/reflected-xss-01.jsp?param1=<script>alert(1)</script>">http://localhost:8080/web-security-holes-01/reflected-xss-01.jsp?param1=&lt;script&gt;alert(1)&lt;/script&gt;</a>
+Usage: <a href="reflected-xss-01.jsp?param1=<script>alert(1)</script>">reflected-xss-01.jsp?param1=&lt;script&gt;alert(1)&lt;/script&gt;</a>
 <br/>
 <br/>
 

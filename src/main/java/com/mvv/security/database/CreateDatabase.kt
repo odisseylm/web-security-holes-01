@@ -2,8 +2,10 @@ package com.mvv.security.database
 
 import java.sql.Connection
 import java.sql.DriverManager
-import javax.servlet.ServletContextEvent
-import javax.servlet.ServletContextListener
+//import javax.servlet.ServletContextEvent
+//import javax.servlet.ServletContextListener
+import jakarta.servlet.ServletContextEvent
+import jakarta.servlet.ServletContextListener
 import kotlin.text.Charsets.UTF_8
 
 
