@@ -1,0 +1,4 @@
+sensitive info
+
+user: user1
+passw: qwerty12345678
