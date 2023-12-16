@@ -70,7 +70,7 @@
 
     function restoreDatabase() {
         const req = new XMLHttpRequest();
-        req.open("POST", "recreate-data.jsp");
+        req.open("POST", "recreate-sql-data.jsp");
         req.send();
     }
 

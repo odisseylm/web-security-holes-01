@@ -56,8 +56,8 @@
 
     const serverFile = "/etc/hosts"
     const serverFileUrl = "file://" + serverFile
-    const someInternalXmlHttp = "http://localhost:8080/web-security-holes-01/internal/some-internal-xml-data.jsp"
-    const someInternalNonXmlHttp = "http://localhost:8080/web-security-holes-01/internal/some-internal-nonvalid-xml-data.jsp"
+    const someInternalXmlHttp = "http://localhost:8080/web-security-holes-01/internal-network/some-internal-xml-data.jsp"
+    const someInternalNonXmlHttp = "http://localhost:8080/web-security-holes-01/internal-network/some-internal-nonvalid-xml-data.jsp"
 
 
     function useXxeToGetLocalFile_01() {
