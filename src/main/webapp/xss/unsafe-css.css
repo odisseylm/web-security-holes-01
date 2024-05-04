@@ -1,0 +1,23 @@
+
+/*#income[value=">100k"] {*/
+#income {
+    background: #d77f7f;
+}
+
+#income[value="100"] {
+    background:url("http://localhost:8080/web-security-holes-01/xss/hacker/incomes?amount=eq100");
+}
+#income[value=">100000"] {
+    background:url("http://localhost:8080/web-security-holes-01/xss/hacker/incomes?amount=gte100k");
+}
+#income[value=">1000"] {
+    background:url("http://localhost:8080/web-security-holes-01/xss/hacker/incomes?amount=gte1k");
+}
+
+
+div[data-var="2"] {
+    background: firebrick;
+}
+div[data-var="3"] {
+    background: cyan;
+}

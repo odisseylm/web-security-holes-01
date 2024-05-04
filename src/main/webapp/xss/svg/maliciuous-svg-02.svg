@@ -1,0 +1,11 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="50" fill="blue" />
+    <script type="text/javascript">console.log('hello from maliciuous-svg-02.svg');</script>
+    <script type="text/javascript">alert('hello from maliciuous-svg-02.svg');</script>
+
+    <script>
+    // <![CDATA[
+        console.log('hello from maliciuous-svg-02.svg');
+    // ]]>
+    </script>
+</svg>

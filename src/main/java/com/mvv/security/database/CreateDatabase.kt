@@ -38,6 +38,18 @@ class CreateDatabase {
         }
     }
 
+    @Suppress("SqlSourceToSinkFlow")
+    fun remove() {
+        openAdminConnection().use { con ->
+
+            con.createStatement().use { st ->
+                "/sql/remove.sql".getResourceText()
+                    .split(statementsSeparator)
+                    .forEach { st.execute(it) }
+            }
+        }
+    }
+
     fun fillData() {
         fillDataUsers()
         fillDataAccounts()

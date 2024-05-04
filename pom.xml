@@ -7,7 +7,6 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>web-security-holes-01 Maven Webapp</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <java.version>15</java.version>
@@ -64,12 +63,12 @@
         </dependency>
         -->
 
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.platform</groupId>-->
+        <!--    <artifactId>jakarta.jakartaee-api</artifactId>-->
+        <!--    <version>10.0.0</version>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
         <!--<dependency>-->
         <!--    <groupId>jakarta.platform</groupId>-->
         <!--    <artifactId>jakarta.jakartaee-web-api</artifactId>-->
@@ -99,27 +98,119 @@
         <!--</dependency>-->
 
 
-
-
-
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.servlet</groupId>-->
+        <!--    <artifactId>jakarta.servlet-api</artifactId>-->
+        <!--    <version>6.0.0</version>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>3.0.0</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet.jsp</groupId>
-            <artifactId>jakarta.servlet.jsp-api</artifactId>
-            <version>3.1.1</version>
             <scope>provided</scope>
         </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish</groupId>-->
+        <!--    <artifactId>javax.servlet.jsp.jstl</artifactId>-->
+        <!--    <version>3.1.1</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.el</groupId>-->
+        <!--    <artifactId>jakarta.el-api</artifactId>-->
+        <!--    <version>5.0.1</version>-->
+        <!--    &lt;!&ndash;<version>6.0.0-M1</version>&ndash;&gt;-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.tomcat.embed</groupId>-->
+        <!--    <artifactId>tomcat-embed-el</artifactId>-->
+        <!--    <version>10.1.17</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.tomcat</groupId>-->
+        <!--    <artifactId>tomcat-jasper-el</artifactId>-->
+        <!--    <version>10.1.17</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish</groupId>-->
+        <!--    <artifactId>jakarta.el</artifactId>-->
+        <!--    <version>5.0.0-M1</version>-->
+        <!--    &lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+        <!--    <groupId>org.eclipse.jetty</groupId>-->
+        <!--    <artifactId>apache-jstl</artifactId>-->
+        <!--    <version>10.0.18</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.servlet.jsp</groupId>-->
+        <!--    <artifactId>jakarta.servlet.jsp-api</artifactId>-->
+        <!--    <version>3.1.1</version>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.el</groupId>-->
+        <!--    <artifactId>jakarta.el-api</artifactId>-->
+        <!--    <version>6.0.0-M1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish</groupId>-->
+        <!--    <artifactId>jakarta.el</artifactId>-->
+        <!--    <version>5.0.0-M1</version>-->
+        <!--    <scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>org.eclipse.jetty</groupId>-->
+        <!--    <artifactId>apache-jstl</artifactId>-->
+        <!--    <version>10.0.18</version>-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish.web</groupId>-->
+        <!--    <artifactId>jakarta.servlet.jsp.jstl</artifactId>-->
+        <!--    <version>3.0.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>org.eclipse.jetty.ee10</groupId>-->
+        <!--    <artifactId>jetty-ee10-glassfish-jstl</artifactId>-->
+        <!--    <version>12.0.4</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish.web</groupId>-->
+        <!--    <artifactId>jakarta.servlet.jsp.jstl</artifactId>-->
+        <!--    <version>3.0.0</version>-->
+        <!--    <exclusions>-->
+        <!--        <exclusion>-->
+        <!--            <groupId>jakarta.servlet.jsp.jstl</groupId>-->
+        <!--            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>-->
+        <!--        </exclusion>-->
+        <!--    </exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.eclipse.jetty</groupId>-->
+        <!--    <artifactId>glassfish-jstl</artifactId>-->
+        <!--    <version>11.0.18</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--    <groupId>org.glassfish.web</groupId>-->
+        <!--    <artifactId>jstl</artifactId>-->
+        <!--    <version>3.0.0-IMPL-RELEASE</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
         <!--    <groupId>jakarta.enterprise</groupId>-->
         <!--    <artifactId>jakarta.enterprise.cdi-api</artifactId>-->
@@ -128,11 +219,11 @@
 
 
 
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>3.0.0-M1</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>jakarta.annotation</groupId>-->
+        <!--    <artifactId>jakarta.annotation-api</artifactId>-->
+        <!--    <version>3.0.0-M1</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>

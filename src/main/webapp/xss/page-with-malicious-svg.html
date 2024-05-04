@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+Seems script tag in SVG does not work anymore.
+
+<hr/>
+
+Safe SVG
+<img src="svg/safe-svg-01.svg" width="100" height="100" alt="safe-svg-01" />
+<br/>
+<hr/>
+
+<br/>
+<br/>
+<br/>
+
+maliciuous-svg-01.svg is safe as img tag.<br/>
+<img src="svg/maliciuous-svg-01.svg" width="100" height="100" alt="maliciuous-svg-01" />
+<br/>
+<br/>
+<hr/>
+
+maliciuous-svg-01.svg is unsafe as embed tag.<br/>
+<embed src="svg/maliciuous-svg-01.svg" width="100" height="100" type="image/svg+xml" />
+<br/>
+<br/>
+<hr/>
+
+
+<br/>
+<br/>
+<br/>
+
+maliciuous-svg-02.svg is safe as img tag.<br/>
+<img src="svg/maliciuous-svg-02.svg" width="100" height="100" alt="maliciuous-svg-02" />
+<br/>
+<br/>
+<hr/>
+
+maliciuous-svg-02.svg is unsafe as embed tag.<br/>
+<embed src="svg/maliciuous-svg-02.svg" width="100" height="100" type="image/svg+xml" />
+<br/>
+<br/>
+<hr/>
+
+
+
+svg-03.svg is unsafe as embed tag.<br/>
+<img src="svg/svg-03.svg" width="100" height="100" alt="svg-03.svg" />
+<br/>
+<br/>
+<hr/>
+
+svg-04.svg is unsafe as embed tag.<br/>
+<img src="svg/svg-04.svg" width="100" height="100" alt="svg-04.svg" />
+<br/>
+<br/>
+<hr/>
+
+svg-05.svg is unsafe as embed tag.<br/>
+<img src="svg/svg-05.svg" width="100" height="100" alt="svg-05.svg" />
+<br/>
+<br/>
+<hr/>
+
+
+<svg
+        viewBox="0 0 10 10"
+        height="120px"
+        width="120px"
+        xmlns="http://www.w3.org/2000/svg">
+    <circle cx="5" cy="5" r="4" />
+
+    <script>
+        // <![CDATA[
+        function getColor() {
+            const R = Math.round(Math.random() * 255)
+                .toString(16)
+                .padStart(2, "0");
+
+            const G = Math.round(Math.random() * 255)
+                .toString(16)
+                .padStart(2, "0");
+
+            const B = Math.round(Math.random() * 255)
+                .toString(16)
+                .padStart(2, "0");
+
+            return `#${R}${G}${B}`;
+        }
+
+        document.querySelector("circle").addEventListener("click", (e) => {
+            e.target.style.fill = getColor();
+        });
+        // ]]>
+    </script>
+</svg>
+
+<br/>
+<br/>
+<hr/>
+
+</body>
+</html>
